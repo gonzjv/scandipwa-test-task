@@ -254,6 +254,16 @@ export class Checkout extends PureComponent {
     );
   }
 
+  renderProcessBar() {
+    const { checkoutStep } = this.props;
+    return (
+      <CheckouProcessBar
+        stepMap={this.stepMap}
+        checkoutStep={checkoutStep}
+      />
+    );
+  }
+
   renderStep() {
     const { checkoutStep } = this.props;
     const { render } = this.stepMap[checkoutStep];
@@ -364,10 +374,7 @@ export class Checkout extends PureComponent {
   render() {
     return (
       <main block="Checkout">
-        {/* <aside className="process-bar">
-          <div>red line</div>
-        </aside> */}
-        <CheckouProcessBar />
+        {this.renderProcessBar()}
         <ContentWrapper
           wrapperMix={{ block: 'Checkout', elem: 'Wrapper' }}
           label={__('Checkout page')}
